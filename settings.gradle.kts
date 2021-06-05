@@ -7,3 +7,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Dagger"
+include(":01_basics")
