@@ -7,4 +7,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Dagger"
-include(":01_basics")
+include(":01_intro")
