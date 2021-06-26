@@ -1,4 +1,4 @@
-@file:Suppress("UNUSED_VARIABLE")
+@file:Suppress("UNUSED_VARIABLE", "unused")
 
 package dev.androidbroadcast.dagger
 
@@ -9,26 +9,19 @@ import android.os.Bundle
 
 /**
  * Не забудьте указать MainApp в AndroidManifest вашего приложения
+ *
+ * Алтернативы инициализации смотрите в [MainApp2]
+ *
+ * @see MainApp2
  */
 class MainApp : Application() {
 
-    /**
-     * Это нормальная ситуация что до явного вызова onCreate() системой компонент будет null и до
-     * его явной инициализации при попытке поулчения будет выбрасываться исключение
-     *
-     * **Способ хранения и доступа к компоненту не является единственным и вы можете организовать
-     * его по своему**
-     */
-    private var _appComponent: AppComponent? = null
-
-    internal val appComponent: AppComponent
-        get() = checkNotNull(_appComponent) {
-            "AppComponent isn't initialized"
-        }
+    lateinit var appComponent: AppComponent
+        private set
 
     override fun onCreate() {
         super.onCreate()
-        _appComponent = DaggerAppComponent.create()
+        appComponent = DaggerAppComponent.create()
     }
 }
 
