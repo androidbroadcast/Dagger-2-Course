@@ -2,12 +2,14 @@
 
 package dev.androidbroadcast.dagger.data
 
+import javax.inject.Inject
+
 interface NewsRepository {
 
     suspend fun getNews(newsId: String): News
 }
 
-class NewsRepositoryImpl(
+class NewsRepositoryImpl @Inject constructor(
     private val newsService: NewsService,
     private val analytics: Analytics,
 ) : NewsRepository {

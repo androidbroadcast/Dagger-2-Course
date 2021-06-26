@@ -1,7 +1,8 @@
-@file:Suppress("UNUSED_VARIABLE", "unused", "UNUSED_PARAMETER")
+@file:Suppress("UNUSED_VARIABLE", "unused", "UNUSED_PARAMETER", "MemberVisibilityCanBePrivate")
 
 package dev.androidbroadcast.dagger
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,11 @@ import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewModelScope
 import by.kirich1409.viewbindingdelegate.viewBinding
+import dagger.Lazy
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
+import dev.androidbroadcast.dagger.data.Analytics
 import dev.androidbroadcast.dagger.data.News
 import dev.androidbroadcast.dagger.data.NewsRepository
 import dev.androidbroadcast.dagger.databinding.FragmentNewsDetailsBinding
@@ -25,12 +31,15 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Provider
 
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appComponent.inject(this)
         with(supportFragmentManager) {
             if (isFragmentContainerEmpty(R.id.fragments)) {
                 commit {
@@ -44,6 +53,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
     }
 
+    @Inject
+    fun trackOnStart(analytics: Analytics) {
+        analytics.trackScreenShow()
+    }
+
     private companion object {
 
         private const val TOP_NEWS_ID = "top"
@@ -55,7 +69,17 @@ class NewsDetailsFragment : Fragment(R.layout.fragment_news_details) {
 
     private val viewBinding by viewBinding(FragmentNewsDetailsBinding::bind)
     private val newsId: String by stringArgs(ARG_NEWS_ID)
-    private val viewModel: NewsDetailsViewModel by viewModels()
+    private val viewModel: NewsDetailsViewModel by viewModels {
+        factory.get().create(newsId)
+    }
+
+    @Inject
+    lateinit var factory: Provider<NewsDetailsViewModel.Factory.Factory>
+
+    override fun onAttach(context: Context) {
+        context.appComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -95,8 +119,8 @@ class NewsDetailsViewModel(
         flow<News> { newsRepository.getNews(newsId) }
             .shareIn(viewModelScope, SharingStarted.Lazily, replay = 1)
 
-    class Factory(
-        private val newsId: String,
+    class Factory @AssistedInject constructor(
+        @Assisted("newsId") private val newsId: String,
         private val newsRepository: NewsRepository,
     ) : ViewModelProvider.Factory {
 
@@ -104,6 +128,12 @@ class NewsDetailsViewModel(
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             require(modelClass == NewsDetailsViewModel::class)
             return NewsDetailsViewModel(newsId, newsRepository) as T
+        }
+
+        @AssistedFactory
+        interface Factory {
+
+            fun create(@Assisted("newsId") newsId: String): NewsDetailsViewModel.Factory
         }
     }
 }
