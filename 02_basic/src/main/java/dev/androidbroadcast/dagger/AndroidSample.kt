@@ -70,11 +70,12 @@ class NewsDetailsFragment : Fragment(R.layout.fragment_news_details) {
     private val viewBinding by viewBinding(FragmentNewsDetailsBinding::bind)
     private val newsId: String by stringArgs(ARG_NEWS_ID)
     private val viewModel: NewsDetailsViewModel by viewModels {
-        factory.get().create(newsId)
+        factory.create(newsId)
     }
 
+    // Lazy и Provider не работаю с зависимостями, которые используют Assisted Inject
     @Inject
-    lateinit var factory: Provider<NewsDetailsViewModel.Factory.Factory>
+    lateinit var factory: NewsDetailsViewModelFactory.Factory
 
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
@@ -118,22 +119,22 @@ class NewsDetailsViewModel(
     val news: SharedFlow<News> =
         flow<News> { newsRepository.getNews(newsId) }
             .shareIn(viewModelScope, SharingStarted.Lazily, replay = 1)
+}
 
-    class Factory @AssistedInject constructor(
-        @Assisted("newsId") private val newsId: String,
-        private val newsRepository: NewsRepository,
-    ) : ViewModelProvider.Factory {
+class NewsDetailsViewModelFactory @AssistedInject constructor(
+    @Assisted("newsId") private val newsId: String,
+    private val newsRepository: NewsRepository,
+) : ViewModelProvider.Factory {
 
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            require(modelClass == NewsDetailsViewModel::class)
-            return NewsDetailsViewModel(newsId, newsRepository) as T
-        }
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        require(modelClass == NewsDetailsViewModel::class)
+        return NewsDetailsViewModel(newsId, newsRepository) as T
+    }
 
-        @AssistedFactory
-        interface Factory {
+    @AssistedFactory
+    interface Factory {
 
-            fun create(@Assisted("newsId") newsId: String): NewsDetailsViewModel.Factory
-        }
+        fun create(@Assisted("newsId") newsId: String): NewsDetailsViewModelFactory
     }
 }
