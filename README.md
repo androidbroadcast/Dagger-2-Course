@@ -14,19 +14,6 @@ Dagger - самое популярное решение для Dependency Inject
 Автор курса - [Кирилл Розов](https://twitter.com/kirill_rozov), создатель канала "Android Broadcast", 
 Android разработчик с 9 годами опыт и Google Developer Expert по Kotlin и Android.
 
-Курс включает в себя 7 тем:
-- Знакомство c Dagger
-- Основные возможности
-- Component и Scope
-- Multibinding
-- Пример модуляризации Android проекта
-- Hilt
-- Эффективная настройка Dagger
-
-Ссылка на плейлист со всеми видео [https://clck.ru/VtY7d](https://clck.ru/VtY7d)
-
----
-
 ## Уроки
 1. [Основы DI и Dagger, как работает, настройка в проекте](https://github.com/androidbroadcast/Dagger-2-Course/tree/01_intro)
 2. [Организация модулей. Типы Inject. Способы доставки зависимостей](https://github.com/androidbroadcast/Dagger-2-Course/tree/02_basic)
@@ -35,3 +22,5 @@ Android разработчик с 9 годами опыт и Google Developer Ex
 5. Пример использования Dagger в многомодульном Android проекте **В РАБОТЕ**
 6. Hilt. Jetpack Hilt **В РАБОТЕ**
 7. Оптимизация настройки Dagger в проекте **В РАБОТЕ**
+
+Ссылка на плейлист со всеми видео [https://clck.ru/VtY7d](https://clck.ru/VtY7d)
