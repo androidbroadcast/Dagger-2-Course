@@ -23,4 +23,4 @@ Android разработчик с 9 годами опыт и Google Developer Ex
 6. Hilt. Jetpack Hilt **В РАБОТЕ**
 7. Оптимизация настройки Dagger в проекте **В РАБОТЕ**
 
-Ссылка на плейлист со всеми видео [https://clck.ru/VtY7d](https://clck.ru/VtY7d)
+[Плейлист со всеми видео курса](https://clck.ru/VtY7d)
