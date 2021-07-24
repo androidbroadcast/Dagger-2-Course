@@ -1,4 +1,6 @@
-package dev.androidbroadcast.dagger.dependent2
+@file:Suppress("unused")
+
+package dev.androidbroadcast.dagger.dependent._2
 
 import android.app.Application
 import dagger.BindsInstance

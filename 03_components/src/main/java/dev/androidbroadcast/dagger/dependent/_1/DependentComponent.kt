@@ -1,16 +1,15 @@
-package dev.androidbroadcast.dagger.dependent3
+@file:Suppress("unused")
+
+package dev.androidbroadcast.dagger.dependent._1
 
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
-import javax.inject.Inject
 
 @Component
 interface AppComponent {
 
     fun application(): Application
-
-    fun featureDeps(): FeatureDeps
 
     @Component.Builder
     interface Builder {
@@ -24,20 +23,13 @@ interface AppComponent {
 
 // ----------------------------------------------------------
 
-class FeatureDeps @Inject constructor(
-    private val application: Application
-) {
-
-    fun application() = application
-}
-
-@Component(dependencies = [FeatureDeps::class])
+@Component(dependencies = [AppComponent::class])
 interface FeatureComponent {
 
     @Component.Builder
     interface Builder {
 
-        fun deps(deps: FeatureDeps): Builder
+        fun appComponent(appComponent: AppComponent): Builder
 
         fun build(): FeatureComponent
     }

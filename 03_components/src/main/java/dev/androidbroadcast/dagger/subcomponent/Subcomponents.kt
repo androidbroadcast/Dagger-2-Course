@@ -1,12 +1,19 @@
+@file:Suppress("unused")
+
 package dev.androidbroadcast.dagger.subcomponent
 
-import android.app.Application
+import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Subcomponent
 import javax.inject.Scope
 import javax.inject.Singleton
+
+fun main(appComponent: AppComponent) {
+    val featureComponent = appComponent.featureComponent()
+        .build()
+}
 
 @Module(subcomponents = [FeatureComponent::class])
 class AppModule
@@ -21,12 +28,11 @@ interface AppComponent {
     interface Builder {
 
         @BindsInstance
-        fun application(app: Application): Builder
+        fun context(context: Context): Builder
 
         fun build(): AppComponent
     }
 }
-
 
 
 @Scope
