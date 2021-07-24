@@ -36,6 +36,7 @@ interface AppComponent {
 
 
 @Scope
+@Retention(AnnotationRetention.RUNTIME)
 annotation class Feature
 
 @Module

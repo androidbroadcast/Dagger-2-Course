@@ -6,9 +6,6 @@ import android.app.Application
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
-import dagger.Module
-import dagger.Provides
-import dagger.Reusable
 import javax.inject.Qualifier
 import javax.inject.Scope
 
@@ -46,12 +43,15 @@ interface AppComponent {
 }
 
 @Qualifier
+@Retention(AnnotationRetention.RUNTIME)
 annotation class AppId
 
 @Qualifier
+@Retention(AnnotationRetention.RUNTIME)
 annotation class MainHost
 
 @Scope
+@Retention(AnnotationRetention.RUNTIME)
 annotation class AppScope
 
 
