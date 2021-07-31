@@ -28,11 +28,11 @@ interface AppBindsModule {
 
     @Binds
     @IntoMap
-    @ClassKey(MainViewModel::class)
+    @ViewModelKey(MainViewModel::class)
     fun provideMainViewModel(mainViewModel: MainViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ClassKey(DetailsViewModel::class)
+    @ViewModelKey(DetailsViewModel::class)
     fun provideDetailsViewModel(detailsViewModel: DetailsViewModel): ViewModel
 }

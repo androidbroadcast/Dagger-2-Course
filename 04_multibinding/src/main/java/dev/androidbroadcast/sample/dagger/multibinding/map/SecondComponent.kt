@@ -30,6 +30,6 @@ interface SecondModule {
 
     @Binds
     @IntoMap
-    @ClassKey(SecondViewModel::class)
+    @ViewModelKey(SecondViewModel::class)
     fun provideSecondViewModel(secondViewModel: SecondViewModel): ViewModel
 }
