@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Component
 import dagger.Module
-import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
 import dev.androidbroadcast.sample.dagger.multibinding.utils.AppScope
 
@@ -27,12 +26,10 @@ interface AppComponent {
 interface AppBindsModule {
 
     @Binds
-    @IntoMap
-    @ViewModelKey(MainViewModel::class)
+    @[IntoMap ViewModelKey(MainViewModel::class)]
     fun provideMainViewModel(mainViewModel: MainViewModel): ViewModel
 
     @Binds
-    @IntoMap
-    @ViewModelKey(DetailsViewModel::class)
+    @[IntoMap ViewModelKey(DetailsViewModel::class)]
     fun provideDetailsViewModel(detailsViewModel: DetailsViewModel): ViewModel
 }

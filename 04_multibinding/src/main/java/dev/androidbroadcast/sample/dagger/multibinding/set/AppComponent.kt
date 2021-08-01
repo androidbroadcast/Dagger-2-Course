@@ -25,7 +25,7 @@ class AppModule {
 
     @Provides
     @ElementsIntoSet // Возможность добавить несколько элементов в Set
-    fun provideFirebaseTracker(
+    fun provideMultipleTrackers(
         firebaseAnalyticsTracker: FirebaseAnalyticsTracker,
         appMetricaTracker: AppMetricaTracker
     ): Set<AnalyticsTracker> = setOf(firebaseAnalyticsTracker, appMetricaTracker)

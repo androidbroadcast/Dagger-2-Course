@@ -8,6 +8,7 @@ import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
 import javax.inject.Scope
 
+@MustBeDocumented
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
 annotation class FeatureScope
@@ -29,7 +30,6 @@ interface SecondComponent {
 interface SecondModule {
 
     @Binds
-    @IntoMap
-    @ViewModelKey(SecondViewModel::class)
+    @[IntoMap ViewModelKey(SecondViewModel::class)]
     fun provideSecondViewModel(secondViewModel: SecondViewModel): ViewModel
 }
