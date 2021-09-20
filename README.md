@@ -19,8 +19,8 @@ Android разработчик с 9 годами опыт и Google Developer Ex
 2. [Организация модулей. Типы Inject. Способы доставки зависимостей](https://github.com/androidbroadcast/Dagger-2-Course/tree/02_basic)
 3. [Component. Subcomponent. Component Dependencies. Scope](https://github.com/androidbroadcast/Dagger-2-Course/tree/03_components)
 4. [Multibindings](https://github.com/androidbroadcast/Dagger-2-Course/tree/04_multibindings)
-5. Пример использования Dagger в многомодульном Android проекте **В РАБОТЕ**
-6. Hilt. Jetpack Hilt **В РАБОТЕ**
+5. [Пример использования Dagger в многомодульном Android проекте](https://github.com/androidbroadcast/Dagger-2-Course/tree/05_android_modularization)
+6. Dagger Hilt **В РАБОТЕ**
 7. Оптимизация настройки Dagger в проекте **В РАБОТЕ**
 
 [Плейлист со всеми видео курса](https://clck.ru/VtY7d)
