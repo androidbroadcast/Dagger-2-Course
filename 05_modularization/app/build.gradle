@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        applicationId "dev.androidbroadcast.news"
+        minSdk 21
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField "String", "NEWS_API_KEY", "\"155ae65d7264461397c901103488c01e\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    def daggerVersion = '2.38.1'
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    implementation project(":api")
+    implementation project(":news_list")
+
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+}
