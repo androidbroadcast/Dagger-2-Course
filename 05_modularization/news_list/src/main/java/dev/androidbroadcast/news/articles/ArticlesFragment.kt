@@ -22,7 +22,10 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
     @Inject
     internal lateinit var articleViewModelFactory: Lazy<ArticlesViewModel.Factory>
 
-    private val articlesViewModel: ArticlesViewModel by viewModels { articleViewModelFactory.get() }
+    private val articlesViewModel: ArticlesViewModel by viewModels {
+        articleViewModelFactory.get()
+    }
+
     private var adapter: ArticleAdapter? = null
 
     override fun onAttach(context: Context) {

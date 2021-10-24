@@ -1,5 +1,8 @@
+@file:Suppress("unused")
+
 package dev.androidbroadcast.news.articles
 
+import androidx.annotation.RestrictTo
 import androidx.lifecycle.ViewModel
 import dagger.Component
 import dev.androidbroadcast.news.core.Feature
@@ -20,40 +23,26 @@ internal interface ArticlesComponent {
     }
 }
 
-object ArticlesDepsProvider {
-
-    internal var deps: ArticlesDeps by notNull()
-
-    fun set(deps: ArticlesDeps) {
-        this.deps = deps
-    }
-}
-
 interface ArticlesDeps {
 
     val newsService: NewsService
 }
 
+interface ArticlesDepsProvider {
+
+    @get:RestrictTo(RestrictTo.Scope.LIBRARY)
+    val deps: ArticlesDeps
+
+    companion object : ArticlesDepsProvider by ArticlesDepsStore
+}
+
+object ArticlesDepsStore : ArticlesDepsProvider {
+
+    override var deps: ArticlesDeps by notNull()
+}
+
 internal class ArticlesComponentViewModel : ViewModel() {
 
-    init {
-        instance = this
-    }
-
     val newDetailsComponent =
-        DaggerArticlesComponent.builder()
-            .deps(ArticlesDepsProvider.deps)
-            .build()
-
-    override fun onCleared() {
-        instance = null
-    }
-
-    internal companion object {
-
-        private var instance: ArticlesComponentViewModel? = null
-
-        internal val newDetailsComponent: ArticlesComponent
-            get() = checkNotNull(instance).newDetailsComponent
-    }
+        DaggerArticlesComponent.builder().deps(ArticlesDepsProvider.deps).build()
 }

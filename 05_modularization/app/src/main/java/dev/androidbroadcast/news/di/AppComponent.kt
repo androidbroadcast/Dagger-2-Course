@@ -31,11 +31,8 @@ interface AppComponent : ArticlesDeps {
 @Module
 class AppModule {
 
-    @Provides
-    @AppScope
-    fun provideNewsService(@NewsApiQualifier apiKey: String): NewsService {
-        return NewsService(apiKey)
-    }
+    @[Provides AppScope]
+    fun provideNewsService(@NewsApiQualifier apiKey: String) = NewsService(apiKey)
 }
 
 @Qualifier

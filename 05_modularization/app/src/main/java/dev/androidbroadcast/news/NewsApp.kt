@@ -1,10 +1,11 @@
-@file:Suppress("MemberVisibilityCanBePrivate")
+@file:Suppress("MemberVisibilityCanBePrivate", "unused")
 
 package dev.androidbroadcast.news
 
 import android.app.Application
 import dev.androidbroadcast.news.articles.ArticlesDeps
 import dev.androidbroadcast.news.articles.ArticlesDepsProvider
+import dev.androidbroadcast.news.articles.ArticlesDepsStore
 import dev.androidbroadcast.news.di.AppComponent
 import dev.androidbroadcast.news.di.DaggerAppComponent
 
@@ -19,6 +20,6 @@ class NewsApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        ArticlesDepsProvider.set(appComponent)
+        ArticlesDepsStore.deps = appComponent
     }
 }
