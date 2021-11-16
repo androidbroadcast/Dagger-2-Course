@@ -127,7 +127,7 @@ class NewsDetailsViewModelFactory @AssistedInject constructor(
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         require(modelClass == NewsDetailsViewModel::class)
         return NewsDetailsViewModel(newsId, newsRepository) as T
     }

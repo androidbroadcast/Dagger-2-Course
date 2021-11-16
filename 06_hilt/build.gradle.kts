@@ -2,7 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
+//    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -31,9 +31,8 @@ dependencies {
     implementation("com.google.dagger:dagger:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
-
-    implementation("com.google.dagger:hilt-android:$daggerVersion")
-    kapt("com.google.dagger:hilt-compiler:$daggerVersion")
+//    implementation("com.google.dagger:hilt-android:$daggerVersion")
+//    kapt("com.google.dagger:hilt-compiler:$daggerVersion")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
 
@@ -49,4 +48,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
 
     implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.6")
+}
+
+kapt {
+    correctErrorTypes = true
 }
