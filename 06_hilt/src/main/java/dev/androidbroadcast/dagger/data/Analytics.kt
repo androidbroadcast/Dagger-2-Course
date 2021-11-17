@@ -2,7 +2,6 @@
 
 package dev.androidbroadcast.dagger.data
 
-import android.content.Context
 import javax.inject.Inject
 
 class Analytics @Inject constructor() {

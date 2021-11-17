@@ -21,6 +21,8 @@ import dagger.Lazy
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.androidbroadcast.dagger.data.Analytics
 import dev.androidbroadcast.dagger.data.News
 import dev.androidbroadcast.dagger.data.NewsRepository
@@ -34,12 +36,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        appComponent.inject(this)
         with(supportFragmentManager) {
             if (isFragmentContainerEmpty(R.id.fragments)) {
                 commit {
@@ -65,21 +66,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 }
 
+@AndroidEntryPoint
 class NewsDetailsFragment : Fragment(R.layout.fragment_news_details) {
 
     private val viewBinding by viewBinding(FragmentNewsDetailsBinding::bind)
     private val newsId: String by stringArgs(ARG_NEWS_ID)
-    private val viewModel: NewsDetailsViewModel by viewModels {
-        factory.create(newsId)
-    }
-
-    // Lazy и Provider не работаю с зависимостями, которые используют Assisted Inject
-    @Inject
-    lateinit var factory: NewsDetailsViewModelFactory.Factory
-
-    override fun onAttach(context: Context) {
-        context.appComponent.inject(this)
-        super.onAttach(context)
+    private val viewModel: NewsDetailsViewModel by lazy {
+        val viewModel: NewsDetailsViewModel by viewModels()
+        viewModel.newsId = newsId
+        viewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -111,30 +106,14 @@ class NewsDetailsFragment : Fragment(R.layout.fragment_news_details) {
     }
 }
 
-class NewsDetailsViewModel(
-    private val newsId: String,
+@HiltViewModel
+class NewsDetailsViewModel @Inject constructor(
     private val newsRepository: NewsRepository
 ) : ViewModel() {
+
+    lateinit var newsId: String
 
     val news: SharedFlow<News> =
         flow<News> { newsRepository.getNews(newsId) }
             .shareIn(viewModelScope, SharingStarted.Lazily, replay = 1)
-}
-
-class NewsDetailsViewModelFactory @AssistedInject constructor(
-    @Assisted("newsId") private val newsId: String,
-    private val newsRepository: NewsRepository,
-) : ViewModelProvider.Factory {
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        require(modelClass == NewsDetailsViewModel::class)
-        return NewsDetailsViewModel(newsId, newsRepository) as T
-    }
-
-    @AssistedFactory
-    interface Factory {
-
-        fun create(@Assisted("newsId") newsId: String): NewsDetailsViewModelFactory
-    }
 }

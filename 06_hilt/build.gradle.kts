@@ -2,7 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
-//    id("dagger.hilt.android.plugin")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -31,8 +31,12 @@ dependencies {
     implementation("com.google.dagger:dagger:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
-//    implementation("com.google.dagger:hilt-android:$daggerVersion")
-//    kapt("com.google.dagger:hilt-compiler:$daggerVersion")
+    implementation("com.google.dagger:hilt-android:$daggerVersion")
+    kapt("com.google.dagger:hilt-compiler:$daggerVersion")
+
+    val hiltExt = "1.3.0-RC1"
+    implementation("it.czerwinski.android.hilt:hilt-extensions:${hiltExt}")
+    kapt("it.czerwinski.android.hilt:hilt-processor:${hiltExt}")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
 
