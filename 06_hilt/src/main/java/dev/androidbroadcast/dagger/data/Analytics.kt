@@ -4,7 +4,7 @@ package dev.androidbroadcast.dagger.data
 
 import javax.inject.Inject
 
-class Analytics @Inject constructor() {
+open class Analytics @Inject constructor() {
 
     fun trackScreenShow() {
     }

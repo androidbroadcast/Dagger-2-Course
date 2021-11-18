@@ -1,17 +1,18 @@
 # Курс по Dagger от Android Broadcast
-## Урок #2. Организация модулей. Типы Inject. Способы доставки зависимостей
+## Урок #6. Dagger Hilt
 
-[![Организация модулей. Типы Inject. Способы доставки зависимостей](https://img.youtube.com/vi/xif-1cnSHxs/0.jpg)](https://www.youtube.com/watch?v=xif-1cnSHxs)
+[![Dagger Hilt](https://img.youtube.com/vi/WzqHHTks1NE/0.jpg)](https://www.youtube.com/watch?v=WzqHHTks1NE)
 
-[Смотреть урок](https://www.youtube.com/watch?v=xif-1cnSHxs)
+[Смотреть урок](https://www.youtube.com/watch?v=WzqHHTks1NE)
 
 Содержание урока:
-- Организация модулей 
-- Binds
-- Inject в конструктор класса
-- Inject в метод
-- Работа с параметрами зависимостей не из графа
-- Assisted Inject
-- Квалификаторы
-- Собственный квалификатор
-- Lazy и Provider
+- Зачем сделали Hilt
+- Стандартные Component и Scope
+- Интеграция с Jetpack библиотеками
+- Кодинг. Перевод проекта на Hilt
+- Собственные расширения Hilt
+- Применение расширения для Bind
+- Использование Hilt вне стандартных Component
+- Добавление собственного Component
+- Hilt в автотестах
+- Минусы Hilt

@@ -10,12 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.coroutineScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.Lazy
 import dagger.assisted.Assisted
@@ -108,7 +103,8 @@ class NewsDetailsFragment : Fragment(R.layout.fragment_news_details) {
 
 @HiltViewModel
 class NewsDetailsViewModel @Inject constructor(
-    private val newsRepository: NewsRepository
+    private val newsRepository: NewsRepository,
+    private val savedStateHandle: SavedStateHandle // По умолчанию существую в Scope ViewModel-и
 ) : ViewModel() {
 
     lateinit var newsId: String

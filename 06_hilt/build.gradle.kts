@@ -52,6 +52,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
 
     implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.6")
+
+    androidTestImplementation("com.google.dagger:hilt-android-testing:$daggerVersion")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:$daggerVersion")
 }
 
 kapt {

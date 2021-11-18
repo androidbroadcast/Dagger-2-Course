@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package dev.androidbroadcast.dagger
 
 import dagger.BindsInstance
