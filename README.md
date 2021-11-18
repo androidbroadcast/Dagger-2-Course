@@ -20,7 +20,7 @@ Android разработчик с 9 годами опыт и Google Developer Ex
 3. [Component. Subcomponent. Component Dependencies. Scope](https://github.com/androidbroadcast/Dagger-2-Course/tree/03_components)
 4. [Multibindings](https://github.com/androidbroadcast/Dagger-2-Course/tree/04_multibindings)
 5. [Пример использования Dagger в многомодульном Android проекте](https://github.com/androidbroadcast/Dagger-2-Course/tree/05_android_modularization)
-6. Dagger Hilt **В РАБОТЕ**
+6. [Dagger Hilt](https://github.com/androidbroadcast/Dagger-2-Course/tree/06_hilt)
 7. Оптимизация настройки Dagger в проекте **В РАБОТЕ**
 
 [Плейлист со всеми видео курса](https://clck.ru/VtY7d)
