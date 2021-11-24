@@ -32,16 +32,16 @@ dependencies {
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
 
-    implementation("androidx.fragment:fragment-ktx:1.3.5")
-    implementation("androidx.activity:activity-ktx:1.2.3")
-    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.fragment:fragment-ktx:1.4.0")
+    implementation("androidx.activity:activity-ktx:1.4.0")
+    implementation("androidx.appcompat:appcompat:1.4.0")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$archComponents")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$archComponents")
     implementation("androidx.lifecycle:lifecycle-common-java8:$archComponents")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$archComponents")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
 
     implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.6")
 }
