@@ -45,3 +45,17 @@ dependencies {
 
     implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.6")
 }
+
+kapt {
+    arguments {
+        // fastInit mode
+//        arg("dagger.fastInit", "enabled")
+
+//         Turning on code formatting
+//        arg("dagger.formatGeneratedSource", "enabled")
+
+//        Full binding graph validation
+//        arg("dagger.fullBindingGraphValidation", "WARNING")
+//        arg("dagger.fullBindingGraphValidation", "ERROR")
+    }
+}
